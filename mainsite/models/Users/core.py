@@ -20,7 +20,7 @@ def user_directory_path(instance, filename):
     return f'{instance.user.id}/{filename}'
 
 
-class UserBase(ModelBase, AbstractUser):
+class User(ModelBase):
     address = models.CharField(verbose_name=_("Home Address"), max_length=999, blank=True, unique=False)
     note = models.CharField(verbose_name=_("Note about User"), max_length=2500, blank=True)
     phone_number = models.CharField(verbose_name=_("Mobil phone number"), max_length=13, blank=True)
@@ -31,11 +31,11 @@ class UserBase(ModelBase, AbstractUser):
     current_education = models.CharField(verbose_name=_("Current Education"), choices=EDUCATIONS, max_length=4)
     organization = models.CharField(verbose_name=_("Organization"), max_length=200, null=True, blank=True)
     experience = models.CharField(verbose_name=_("Work Experience"), max_length=1000, null=True, blank=True)
-    emergency_contact_information = models.CharField(max_length=5000, xverbose_name=_("Emergency Contact Information"),
+    emergency_contact_information = models.CharField(max_length=5000, verbose_name=_("Emergency Contact Information"),
                                                      null=True, blank=True)
-    profilephoto = models.ImageField(upload_to=user_directory_path, verbose_name=_("Profile Picture"),
+    profile_photo = models.ImageField(upload_to=user_directory_path, verbose_name=_("Profile Picture"),
                                      help_text=_("Maximum 5 MB file is allowed."))
-
 
     class Meta:
         abstract = True
+        app_label = 'mainsite'
