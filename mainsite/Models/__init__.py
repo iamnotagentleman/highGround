@@ -1,0 +1,1 @@
+from .base import ModelBase as _ModelBase

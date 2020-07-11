@@ -13,3 +13,4 @@ class ModelBase(models.Model):
     class Meta:
         abstract = True
         get_latest_by = 'created'
+        app_label = 'mainsite'
