@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # highGround Apps
-    'mainsite.apps.MainsiteConfig'
+    'mainsite.apps.MainsiteConfig',
     
     # Third-Party
     'simple_history',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
