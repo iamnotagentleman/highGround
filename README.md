@@ -1,2 +1,2 @@
 # highGround
-- a platform for checkmate WIP.
+- a platform for roll-call WIP.
