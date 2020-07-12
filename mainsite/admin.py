@@ -24,9 +24,10 @@ class UserAdmin(CommonAdmin):
 @admin.register(Course)
 class CourseAdmin(CommonAdmin):
     list_display = ['name', 'lecturers']
-    list_filter = ['site', 'assistant']
+    list_filter = ['site', 'assistant', 'lecturer']
 
-    def lecturers(self, obj):
+    @staticmethod
+    def lecturers(obj):
         return "\n".join([l.email for l in obj.lecturer.filter(is_staff=True)])
 
 
