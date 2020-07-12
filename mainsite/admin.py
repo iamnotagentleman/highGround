@@ -1,6 +1,6 @@
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
-from .models import Site, User
+from .models import Site, User, Course
 
 
 class CommonAdmin(SimpleHistoryAdmin):
@@ -14,7 +14,17 @@ class SiteAdmin(CommonAdmin):
     list_filter = ['year', 'event_start_date', 'event_end_date', 'is_active']
     date_hierarchy =  'event_start_date'
 
+
 @admin.register(User)
 class UserAdmin(CommonAdmin):
     list_display = ['username', 'email', 'phone_number', 'is_staff']
-    list_filter = ['is_staff', 'is_superuser', 'gender']
+    list_filter = ['is_staff', 'is_superuser', 'gender', 'is_active']
+
+
+@admin.register(Course)
+class CourseAdmin(CommonAdmin):
+    list_display = ['name', 'get_lecturers']
+    list_filter = ['site', 'assistant']
+
+    def get_lecturers(self, obj):
+        return "\n".join([l.email for l in obj.User.filter(is_staff=True)])
