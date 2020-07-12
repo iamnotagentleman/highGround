@@ -81,7 +81,7 @@ class User(ModelBase, AbstractUser):
     emergency_contact_information = models.CharField(max_length=5000, verbose_name=_("Emergency Contact Information"),
                                                      null=True, blank=True)
     profile_photo = models.ImageField(upload_to=user_directory_path, verbose_name=_("Profile Picture"),
-                                     help_text=_("Maximum 5 MB file is allowed."))
+                                     help_text=_("Maximum 5 MB file is allowed."), blank=True)
 
     class Meta:
         verbose_name = _('User')
