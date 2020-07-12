@@ -20,10 +20,14 @@ class ModelBase(models.Model):
         app_label = 'mainsite'
 
 
+def site_directory_path(instance, filename):
+    return f'images/sites/{instance.id}/{filename}'
+
+
 class Site(ModelBase):
     name = models.CharField(verbose_name=_("Site Name"), max_length=255)
     year = models.CharField(verbose_name=_("Year"), max_length=4)
-    logo = models.ImageField(verbose_name=_("Logo"), upload_to="images/")
+    logo = models.ImageField(verbose_name=_("Logo"), upload_to=site_directory_path)
     is_active = models.BooleanField(verbose_name=_("Is Active"), default=False)
     home_url = models.CharField(verbose_name=_("Home Url"), max_length=128, null=True)
     domain = models.CharField(verbose_name=_("domain"), max_length=128, null=True,
@@ -59,7 +63,7 @@ EDUCATIONS = [
 
 
 def user_directory_path(instance, filename):
-    return f'{instance.user.id}/{filename}'
+    return f'images/users/{instance.id}/{filename}'
 
 
 class User(ModelBase, AbstractUser):
