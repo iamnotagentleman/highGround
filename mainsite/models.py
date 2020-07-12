@@ -103,14 +103,20 @@ class Course(ModelBase):
     lecturer = models.ManyToManyField(User,
                                        limit_choices_to={'is_staff': True},
                                        verbose_name=_("Lecturers of Course"),
-                                       related_name='lecturer')
+                                       related_name='lecturer',
+                                       blank=True)
     assistant = models.ManyToManyField(User,
                                        limit_choices_to={'is_staff': True},
                                        verbose_name=_("Assistant of Lecturer"),
-                                       related_name='assistant')
+                                       related_name='assistant',
+                                       blank=True)
 
     participant = models.ManyToManyField(User,
                                           limit_choices_to={"is_staff": False},
                                           verbose_name=_("Participants Of Course"),
+                                          related_name='participant',
+                                          blank=True)
 
-                                          related_name='participant')
+    def __str__(self):
+        return f"{self.name}-{self.site}"
+
