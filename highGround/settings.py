@@ -31,15 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    # highGround Apps
+    'mainsite.apps.MainsiteConfig',
+
+    # built-in django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # highGround Apps
-    'mainsite.apps.MainsiteConfig',
 
     # Third-Party
     'simple_history',
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'highGround.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +119,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_L10N = True
-
+# this variable for determine hosting situation if your site open to world you must declare to `WORLDWIDE`
+SITE_HOST_STATUS = "LOCAL"
 USE_TZ = True
 
 AUTH_USER_MODEL = 'mainsite.User'
@@ -125,3 +128,7 @@ AUTH_USER_MODEL = 'mainsite.User'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'static'))
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
