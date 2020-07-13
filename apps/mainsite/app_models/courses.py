@@ -1,6 +1,6 @@
 from django.db import models
-from mainsite.app_models.sites import Site
-from mainsite.app_models.base import ModelBase
+from apps.mainsite.app_models.sites import Site
+from apps.mainsite.app_models.base import ModelBase
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 

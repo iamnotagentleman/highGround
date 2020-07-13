@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import ValidationError
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from mainsite.app_models.base import ModelBase
+from apps.mainsite.app_models.base import ModelBase
 
 
 def site_directory_path(instance, filename):

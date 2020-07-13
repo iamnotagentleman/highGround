@@ -2,9 +2,7 @@
 
 from django.conf import settings
 from django.db import migrations, models
-import django.db.models.deletion
 import django.utils.timezone
-import mainsite.app_models
 import simple_history.models
 import uuid
 
@@ -47,7 +45,7 @@ class Migration(migrations.Migration):
                 ('history_change_reason', models.CharField(max_length=100, null=True)),
                 ('history_type', models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
                 ('history_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
-                ('site', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='mainsite.Site', verbose_name='Course Site')),
+                ('site', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='apps.mainsite.Site', verbose_name='Course Site')),
             ],
             options={
                 'verbose_name': 'historical course',
@@ -67,7 +65,7 @@ class Migration(migrations.Migration):
                 ('assistant', models.ManyToManyField(limit_choices_to={'is_staff': True}, related_name='assistant', to=settings.AUTH_USER_MODEL, verbose_name='Assistant of Lecturer')),
                 ('lecturer', models.ManyToManyField(limit_choices_to={'is_staff': True}, related_name='lecturer', to=settings.AUTH_USER_MODEL, verbose_name='Lecturers of Course')),
                 ('participant', models.ManyToManyField(limit_choices_to={'is_staff': False}, related_name='participant', to=settings.AUTH_USER_MODEL, verbose_name='Participants Of Course')),
-                ('site', models.ForeignKey(on_delete=models.SET(mainsite.app_models.courses.get_sentinel_site), to='mainsite.Site', verbose_name='Course Site')),
+#                ('site', models.ForeignKey(on_delete=models.SET(apps.mainsite.app_models.courses.get_sentinel_site), to='apps.mainsite.Site', verbose_name='Course Site')),
             ],
             options={
                 'get_latest_by': 'created',

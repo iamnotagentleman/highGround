@@ -1,4 +1,4 @@
-from mainsite.app_models.base import ModelBase
+from apps.mainsite.app_models.base import ModelBase
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser
@@ -27,7 +27,7 @@ class User(ModelBase, AbstractUser):
     phone_number = models.CharField(verbose_name=_("Mobil phone number"), max_length=13, blank=True)
     birth_date = models.DateField(verbose_name=_("Birth Date"), default=datetime_safe.date(2000, 1, 1))
     job = models.CharField(verbose_name=_("Job"), max_length=40, )
-    gender = models.CharField(choices={'E': _("Male"), 'K': _("Female")}.items(), verbose_name=_("Gender"),max_length=1,
+    gender = models.CharField(choices={'M': _("Male"), 'F': _("Female")}.items(), verbose_name=_("Gender"),max_length=1,
                               blank=True)
     country = CountryField(verbose_name=_("Nationality"), choices=COUNTRIES, default='UK')
     current_education = models.CharField(verbose_name=_("Current Education"), choices=EDUCATIONS, max_length=4)

@@ -1,9 +1,9 @@
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
-from mainsite.app_models.sites import Site
-from mainsite.app_models.checks import Check
-from mainsite.app_models.users import User
-from mainsite.app_models.courses import Course
+from apps.mainsite.app_models.sites import Site
+from apps.mainsite.app_models.checks import Check
+from apps.mainsite.app_models.users import User
+from apps.mainsite.app_models.courses import Course
 
 
 class CommonAdmin(SimpleHistoryAdmin):

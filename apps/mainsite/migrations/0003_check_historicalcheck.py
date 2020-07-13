@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('history_date', models.DateTimeField()),
                 ('history_change_reason', models.CharField(max_length=100, null=True)),
                 ('history_type', models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
-                ('course', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='mainsite.Course', verbose_name='Course of Check')),
+                ('course', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='apps.mainsite.Course', verbose_name='Course of Check')),
                 ('history_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('start_check', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Event Start Time')),
                 ('end_check', models.DateField(default=django.utils.timezone.now, verbose_name='Event End Time')),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainsite.Course', verbose_name='Course of Check')),
+                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.mainsite.Course', verbose_name='Course of Check')),
             ],
             options={
                 'get_latest_by': 'created',
