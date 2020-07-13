@@ -33,7 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
     # highGround Apps
-    'mainsite.apps.MainsiteConfig',
+    'apps.mainsite.apps.MainsiteConfig',
+    'apps.api.apps.ApiConfig',
 
     # built-in django
     'django.contrib.admin',
@@ -46,6 +47,8 @@ INSTALLED_APPS = [
     # Third-Party
     'simple_history',
     'django_countries',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
