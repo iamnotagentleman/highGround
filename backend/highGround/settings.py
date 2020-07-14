@@ -59,7 +59,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'highGround.middleware.site.SiteMiddleWare',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'highGround.middleware.extra.LogVariablesMiddleware',
+    'highGround.middleware.site.CurrentSiteMiddleware',
 ]
 
 ROOT_URLCONF = 'highGround.urls'
