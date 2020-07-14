@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.core.validators import ValidationError
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -16,6 +16,9 @@ def site_file_size(value):
 
 
 class Site(ModelBase):
+    """
+    This platform has a site based design and this model provides the design.
+    """
     name = models.CharField(verbose_name=_("Site Name"), max_length=255)
     year = models.CharField(verbose_name=_("Year"), max_length=4)
     logo = models.ImageField(verbose_name=_("Logo"), upload_to=site_directory_path, validators=[site_file_size])
@@ -40,3 +43,14 @@ class Site(ModelBase):
 
     def __str__(self):
         return f'{self.name}-{self.year}'
+
+    def save(self, *args, **kwargs):
+        """
+        if multiple sites are activated this function update other sites to deactivate automatically
+        """
+        if not self.is_active:
+            return super(Site, self).save(*args, **kwargs)
+        with transaction.atomic():
+            Site.objects.filter(
+                is_active=True).update(is_active=False)
+            return super(Site, self).save(*args, **kwargs)
