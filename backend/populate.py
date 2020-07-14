@@ -101,7 +101,8 @@ def fake_site(count):
 def fake_course(count):
     count = int(count)
     sites = Site.objects.all()
-    users = User.objects.all()
+    users_all = User.objects.all()
+    lecturers = User.objects.filter(is_staff=True)
     for i in range(count):
         new_course = Course(
             site=random.choice(sites),
@@ -110,9 +111,9 @@ def fake_course(count):
         )
         try:
             new_course.save()
-            new_course.lecturer.add(random.choice(users))
-            new_course.assistant.add(random.choice(users))
-            new_course.participant.add(random.choice(users))
+            new_course.lecturer.add(random.choice(lecturers))
+            new_course.assistant.add(random.choice(lecturers))
+            new_course.participant.add(random.choice(users_all))
         except IntegrityError:
             pass
         print('CREATED COURSE:', new_course)
