@@ -8,5 +8,4 @@ class Home(TemplateView):
     def get_context_data(self, **kwargs):
         return {
             **super().get_context_data(**kwargs),
-            'user': User,
         }

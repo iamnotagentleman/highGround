@@ -1,20 +1,17 @@
 from django.urls import reverse
 from django.http import Http404
+from django.utils.deprecation import MiddlewareMixin
 import logging
 log = logging.getLogger(__name__)
 
 
-class SiteMiddleWare:
-
-    def __init__(self, get_response):
-        self.get_response = get_response
-
-
-    def __call__(self, request):
-        response = self.get_response(request)
+class CurrentSiteMiddleware(MiddlewareMixin):
+    def process_request(self, request):
         if request.path.startswith(reverse('admin:index')):
-            return response
+            return
+
         domain_parts = request.get_host().split('.')
+
         if len(domain_parts) > 2:
             subdomain = domain_parts[0]
             if subdomain.lower() == 'www':
@@ -23,16 +20,17 @@ class SiteMiddleWare:
         else:
             subdomain = None
             domain = request.get_host()
-        if hasattr(response, 'data'):
-            response.data['subdomain'] = subdomain
-            response.data['domain'] = domain
+
+        request.subdomain = subdomain
+        request.domain = domain
+
         from apps.mainsite.app_models.sites import Site
         try:
-            if hasattr(response, 'data'):
-                response.data['site'] = Site.objects.get(is_active=True)
-            return response
-            log.info(f'{request}')
+            request.site = Site.objects.get(is_active=True)
+            log.info("%s" % request.get_host(), extra=request.log_extra)
         except Site.MultipleObjectsReturned as e:
-            log.error(f'{request}')
+            log.error(str(e), extra=request.log_extra)
             raise Http404
-
+        except Site.DoesNotExist as e:
+            log.error(str(e), extra=request.log_extra)
+            raise Http404
