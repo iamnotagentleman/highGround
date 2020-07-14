@@ -1,3 +1,8 @@
+"""
+Python Script for populate site only for testing purposes dont use in production all created users by script the
+passwords is strongestpassword123
+"""
+
 import random
 import faker
 from django.utils.datetime_safe import datetime
@@ -5,7 +10,7 @@ from django.utils import timezone
 from django.db.utils import IntegrityError
 from django.utils.timezone import make_aware
 from os import urandom
-
+from highGround.wsgi import application
 from apps.mainsite.app_models import (
     User,
     Course,
@@ -41,7 +46,8 @@ def fake_user(count):
             gender=fp['sex'],
             birth_date=fp['birthdate'],
             phone_number=fp['ssn'],
-            current_education=random.choice(EDUCATIONS)[0]
+            current_education=random.choice(EDUCATIONS)[0],
+            is_staff=random.choice((True, False))
         )
         new_user.set_password(password)
         try:
