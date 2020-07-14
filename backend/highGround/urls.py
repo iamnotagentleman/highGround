@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
-from rest_framework import routers
+#from rest_framework import routers
 from apps.api.api_views.user import user_detail, user_list
-router = routers.DefaultRouter()
+from apps.mainsite.views import Home
+#router = routers.DefaultRouter()
 admin.autodiscover()
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),  # new
     re_path(r'^api/users/$', user_list),
     re_path(r'^api/user/(?P<username>\w+)$', user_detail),
+    re_path(r'^$', Home.as_view()),
 ]
