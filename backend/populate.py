@@ -2,7 +2,6 @@ import random
 import faker
 from django.utils.datetime_safe import datetime
 from django.utils import timezone
-from highGround.wsgi import application
 from django.db.utils import IntegrityError
 from django.utils.timezone import make_aware
 from os import urandom
