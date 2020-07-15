@@ -11,4 +11,4 @@ class Check(ModelBase):
     end_check = models.DateTimeField(verbose_name=_("Event End Time"), default=timezone.now)
 
     def __str__(self):
-        return f"{self.course.name}-{self.course.site}-{self.start_check}"
+        return f"{self.course.name}-{self.start_check}"
