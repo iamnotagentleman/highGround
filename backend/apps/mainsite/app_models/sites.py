@@ -46,7 +46,7 @@ class Site(ModelBase):
 
     def save(self, *args, **kwargs):
         """
-        if multiple sites are activated this function update other sites to deactivate automatically
+        if multiple sites are activated this function update other site activate status active to deactivate automatically
         """
         if not self.is_active:
             return super(Site, self).save(*args, **kwargs)
