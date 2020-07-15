@@ -26,7 +26,7 @@ class User(ModelBase, AbstractUser):
     note = models.CharField(verbose_name=_("Note about User"), max_length=2500, blank=True)
     phone_number = models.CharField(verbose_name=_("Mobil phone number"), max_length=13, blank=True)
     birth_date = models.DateField(verbose_name=_("Birth Date"), default=datetime_safe.date(2000, 1, 1))
-    job = models.CharField(verbose_name=_("Job"), max_length=40, )
+    job = models.CharField(verbose_name=_("Job"), max_length=60, )
     gender = models.CharField(choices={'M': _("Male"), 'F': _("Female")}.items(), verbose_name=_("Gender"),max_length=1,
                               blank=True)
     country = CountryField(verbose_name=_("Nationality"), choices=COUNTRIES, default='UK')
