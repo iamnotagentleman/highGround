@@ -270,7 +270,7 @@ body {
 }
 
 .page-content .grid {
-  display: grid;
+  display: contents;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 30px;
 }
@@ -434,8 +434,7 @@ body {
   color: var(--red);
 }
 
-h1 {
+.widget-header {
   width: 100%;
   text-align: center;
-  color: white;
 }
