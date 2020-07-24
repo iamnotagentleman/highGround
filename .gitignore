@@ -4,7 +4,6 @@
 *.sqlite3
 /.idea/
 /backend/images/
-
 # REACT
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
@@ -29,3 +28,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/backend/highGround/config.py
