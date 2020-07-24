@@ -40,6 +40,9 @@ class Site(ModelBase):
 
     class Meta:
         get_latest_by = 'year'
+        constraints = [
+            models.UniqueConstraint(fields=['event_start_date', 'event_end_date'], name='Unique Date Range')
+        ]
 
     def __str__(self):
         return f'{self.name}-{self.year}'
