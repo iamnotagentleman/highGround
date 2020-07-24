@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 #from rest_framework import routers
 from apps.api.api_views.user import user_detail, user_list
-from apps.mainsite.views import Home
+from apps.mainsite.views import Home, Check
 #router = routers.DefaultRouter()
 admin.autodiscover()
 
@@ -27,4 +27,5 @@ urlpatterns = [
     re_path(r'^api/users/$', user_list),
     re_path(r'^api/user/(?P<username>\w+)$', user_detail),
     re_path(r'^$', Home.as_view()),
+    re_path(r'check/$', Check.as_view())
 ]
