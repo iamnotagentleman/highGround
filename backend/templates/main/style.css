@@ -35,6 +35,7 @@ button {
 
 a {
   text-decoration: none;
+  color: white;
 }
 
 button {
@@ -55,10 +56,15 @@ svg {
   display: block;
 }
 
-body {
-  font: 16px/1.5 "Lato", sans-serif;
-}
 
+
+a.button:hover,
+a.button:focus
+{
+    background: var(--page-header-bgColor-hover);
+    color: var(--blue);
+  outline: none;
+}
 
 /* HEADER STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -74,7 +80,6 @@ body {
   color: var(--page-header-txtColor);
   background: var(--page-header-bgColor);
 }
-
 /*In case you prefer an absolutely positioned header that covers the full page height, add these styles*/
 /*body {
   position: relative;
@@ -96,8 +101,32 @@ body {
   bottom: 0;
   overflow: auto;
 }*/
-
-.page-header nav {
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #e43f5a;
+  color: #333333;
+  padding: 1em 6px 5px 6px;
+  border-color: #1e347b;
+  border-radius: 15px;
+  margin: 2px 1em 20% auto;
+}
+.isdisabled{
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #6b1a27;
+  color: #333333;
+  padding: 1em 6px 5px 6px;
+  border-color: #1e347b;
+  border-radius: 15px;
+  margin: 2px 1em 20% auto;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.btns {
+    float: right;
+}
+  .page-header nav {
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -158,7 +187,11 @@ body {
   margin-right: 10px;
   transition: fill 0.2s;
 }
-
+body {
+  font: 16px/1.5 "Lato", sans-serif;
+  border-color: #736b5e;
+  color: #e8e6e3;
+}
 .page-header .admin-menu a,
 .page-header .admin-menu button {
   display: flex;
@@ -269,24 +302,55 @@ body {
   background: var(--red);
 }
 
-.page-content .grid {
-  display: contents;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 30px;
-}
+  .page-content .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: auto auto 1fr 1fr 1fr auto auto;
+    grid-gap: 30px;
 
-.page-content .grid > article {
-  display: flex;
-  height: 300px;
-  background: #001F3F;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  }
+::-webkit-scrollbar {
+    background-color: #202324;
+    color: #aba499;
 }
-
-.page-content .grid > article:first-child,
-.page-content .grid > article:last-child {
-  grid-column: 1 / -1;
+::-webkit-scrollbar-thumb {
+    background-color: #454a4d;
 }
+::-webkit-scrollbar-corner {
+    background-color: #181a1b;
+}
+  .page-content .grid > .content-card {
+    display: inline-block;
+    height: 300px;
+    background: #242e42;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+.page-content .grid > .content-card > h1, h2, h3, h4, h5, h6 ,span, p{
+  color: white;
+}
+.page-content .grid > .content-card .btns > a, h1, h2, h3, h4, h5, h6 ,span, p{
+  color: white;
+}
+.page-content .grid > .content-card .btns > a{
+  margin: 24px 1em 30%;
+  padding-top: 12px;
+  top: 100px;
+}
+.page-content .grid > .content-card > h1, p {
+  padding-left: 10px;
+}
+.page-content .grid > .content-card > p {
+  padding-top: 10px;
+}
+.page-content .grid > .content-card > hr {
+  }
+  .page-content .grid > .content-card:first-child,
+  .page-content .grid > .content-card:last-child {
+    grid-column: 1 / -1;
+  }
 
 
 /* MQ RULES
@@ -437,4 +501,24 @@ body {
 .widget-header {
   width: 100%;
   text-align: center;
+}
+html, body, input, textarea, select, button {
+    border-color: #736b5e;
+    color: #e8e6e3;
+}
+
+section.page-content, section.search-and-user {
+    background-color: #121212;
+}
+.search-and-user input[type="search"] {
+    background-image: initial;
+    background-color: rgb(24, 26, 27);
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 10px -2px;
+}
+#users {
+  fill: white;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
 }
