@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-Party
+    'channels',
     'simple_history',
     'django_countries',
     'rest_framework',
@@ -83,8 +84,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'highGround.wsgi.application'
+ASGI_APPLICATION = 'highGround.routing.application'
 
-
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
