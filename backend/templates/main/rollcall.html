@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <h1 id="course-name">{{ courseName }}</h1>
+    <button id="check-it">CHECK IT!</button>
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const courseName = document.getElementById('course-name').textContent;
+    const checkSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/rollcall/'
+        + courseName
+        + '/'
+    );
+    document.querySelector('#check-it').onclick = function (e) {
+        checkSocket.send(JSON.stringify({
+            'user': 'maysa'
+        }))
+    };
+</script>
+</body>
+</html>
